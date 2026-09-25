@@ -1,0 +1,6 @@
+zone "ram.local" { type master; file "/etc/bind/db.ram.local"; };
+zone "46.21.172.in-addr.arpa" { type master; file "/etc/bind/db.172.21.46"; };
+zone "47.21.172.in-addr.arpa" { type master; file "/etc/bind/db.172.21.47"; };
+zone "54.21.172.in-addr.arpa" { type master; file "/etc/bind/db.172.21.54"; };
+zone "55.21.172.in-addr.arpa" { type master; file "/etc/bind/db.172.21.55"; };
+zone "56.21.172.in-addr.arpa" { type master; file "/etc/bind/db.172.21.56"; };
