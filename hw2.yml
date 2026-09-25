@@ -1,0 +1,230 @@
+services:
+
+  #X = LAST 2 DIGITS OF UMBC ID
+
+  BR1:
+    build:
+      context: ../df
+      dockerfile: ub24-router.df
+      target: ub24-router
+    image: umbc/csee/cns/ub24-router
+    container_name: BR1
+    hostname: BR1
+    tty: true
+    sysctls:
+      net.ipv4.ip_forward: "1"
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    networks:
+      branch_office_one: #br1 connected to the branch office 1 network
+        ipv4_address: 172.21.18.254
+      br1_to_bb:
+        ipv4_address: 172.21.26.254
+    #add route to dns network
+    #add route to the backbone network i think?
+    command: >
+      bash -c "
+      ip route add 172.21.19.0/24 via 172.21.26.253
+      ip route add 172.21.28.0/24 via 172.21.26.253
+      && tail -f /dev/null
+      "
+  BR2:
+    build:
+      context: ../df
+      dockerfile: ub24-router.df
+      target: ub24-router
+    image: umbc/csee/cns/ub24-router
+    container_name: BR2
+    hostname: BR2
+    tty: true
+    sysctls:
+      net.ipv4.ip_forward: "1"
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    networks:
+      branch_office_two: #br2 connected to branch office 2 network
+        ipv4_address: 172.21.19.254
+      br2_to_bb:
+        ipv4_address: 172.21.27.254
+    command: >
+      bash -c "
+      ip route add 172.21.18.0/24 via 172.21.27.253
+      ip route add 172.21.28.0/24 via 172.21.27.253 
+      && tail -f /dev/null
+      "
+
+  BB:
+    build:
+      context: ../df
+      dockerfile: ub24-router.df
+      target: ub24-router
+    image: umbc/csee/cns/ub24-router
+    container_name: BB
+    hostname: BB
+    tty: true
+    sysctls:
+      net.ipv4.ip_forward: "1"
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    networks:
+      br1_to_bb: #br1 to bb network
+        ipv4_address: 172.21.26.253
+      br2_to_bb: #br2 to bb network
+        ipv4_address: 172.21.27.253
+      dns_to_bb: #ip address of bb interface to dns server (staying consistent with 253 because why not)
+        ipv4_address: 172.21.28.253
+    command: >
+      bash -c "
+      ip route add 172.21.18.0/24 via 172.21.26.254
+      && ip route add 172.21.19.0/24 via 172.21.27.254
+      && tail -f /dev/null
+      "
+  C11:
+    build:
+      context: ../df
+      dockerfile: ub24-host.df
+      target: ub24-host
+    image: umbc/csee/cns/ub24-host
+    hostname: C11
+    container_name: C11
+    tty: true
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    networks:
+      branch_office_one: #computer 1 on branch office 1
+        ipv4_address: 172.21.18.11
+    command: >
+      bash -c "
+      ip route add 172.21.19.0/24 via 172.21.18.254 &&
+      ip route add 172.21.28.0/24 via 172.21.18.254 &&
+      mkdir -p /tmp
+      && tail -f /dev/null "
+
+  C12:
+    build:
+      context: ../df
+      dockerfile: ub24-host.df
+      target: ub24-host
+    image: umbc/csee/cns/ub24-host
+    hostname: C12
+    container_name: C12
+    tty: true
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    networks:
+      branch_office_one: #computer 2 on branch office 1
+        ipv4_address: 172.21.18.12
+    command: >
+      bash -c "
+      ip route add 172.21.19.0/24 via 172.21.18.254 &&
+      ip route add 172.21.28.0/24 via 172.21.18.254 &&
+      mkdir -p /tmp
+      && tail -f /dev/null "
+
+  C21:
+    build:
+      context: ../df
+      dockerfile: ub24-host.df
+      target: ub24-host
+    image: umbc/csee/cns/ub24-host
+    hostname: C21
+    container_name: C21
+    tty: true
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    networks:
+      branch_office_two: #computer 1 on branch office 2
+        ipv4_address: 172.21.19.21
+    command: >
+      bash -c "
+      ip route add 172.21.18.0/24 via 172.21.19.254 &&
+      ip route add 172.21.28.0/24 via 172.21.19.254 &&
+      mkdir -p /tmp
+      && tail -f /dev/null "
+
+  C22:
+    build:
+      context: ../df
+      dockerfile: ub24-host.df
+      target: ub24-host
+    image: umbc/csee/cns/ub24-host
+    hostname: C22
+    container_name: C22
+    tty: true
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    networks:
+      branch_office_two: #computer 2 on branch office 2
+        ipv4_address: 172.21.19.22
+    command: >
+      bash -c "
+      ip route add 172.21.18.0/24 via 172.21.19.254 &&
+      ip route add 172.21.28.0/24 via 172.21.19.254 &&
+      mkdir -p /tmp
+      && tail -f /dev/null "
+
+  DNS_SERVER:
+    build:
+      context: ../df
+      dockerfile: ub24-dns.df
+      target: ub24-dns
+    image: umbc/csee/cns/ub24-dns
+    hostname: DNS_SERVER
+    container_name: DNS_SERVER
+    tty: true
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    networks:
+      dns_to_bb:
+        ipv4_address: 172.21.28.10 #ip address of dns server
+    command: > 
+      bash -c "
+      ip route add 172.21.18.0/24 via 172.21.28.253 &&
+      ip route add 172.21.19.0/24 via 172.21.28.253 &&
+      exec /usr/sbin/named -g -u bind
+      "
+
+networks:
+
+  branch_office_one: #br2 network
+    name: BR1
+    ipam:
+      config:
+        - subnet: 172.21.18.0/24
+
+  branch_office_two: #br2 network
+    name: BR2
+    ipam:
+      config:
+        - subnet: 172.21.19.0/24
+
+  br1_to_bb: #network for the bb router to br1 router
+    name: BR1_TO_BB_LINK
+    ipam:
+      config:
+        - subnet: 172.21.26.0/24
+
+  br2_to_bb: #network for the bb router to br2 router 
+    name: BR2_TO_BB_LINK
+    ipam:
+      config:
+        - subnet: 172.21.27.0/24
+
+  dns_to_bb: #network for the bb router connected to the dns
+    name: DNS_TO_BB_LINK
+    ipam:
+      config:
+        - subnet: 172.21.28.0/24
