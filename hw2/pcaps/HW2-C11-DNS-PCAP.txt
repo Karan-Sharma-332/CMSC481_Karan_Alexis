@@ -1,0 +1,40 @@
+ld00017root@130.85.220.124:yml$ sudo docker exec -it C11 tcpdump -r /tmp/HW2-C11-DNS-TCPDUMP.pcap
+reading from file /tmp/HW2-C11-DNS-TCPDUMP.pcap, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 262144
+Warning: interface names might be incorrect
+18:36:47.216644 eth0  Out IP C11.48797 > 172.21.28.10.domain: 21909+ [1au] A? c11.group6.local. (57)
+18:36:47.216929 eth0  In  IP 172.21.28.10.domain > C11.48797: 21909* 1/0/1 A 172.21.18.11 (89)
+18:36:47.297258 eth0  Out IP C11.35395 > 172.21.28.10.domain: 20665+ [1au] NS? group6.local. (53)
+18:36:47.297462 eth0  In  IP 172.21.28.10.domain > C11.35395: 20665* 1/0/2 NS dns.group6.local. (103)
+18:36:47.372382 eth0  Out IP C11.54244 > 172.21.28.10.domain: 32686+ [1au] MX? group6.local. (53)
+18:36:47.372555 eth0  In  IP 172.21.28.10.domain > C11.54244: 32686* 1/0/1 MX mail.group6.local. 10 (90)
+18:36:47.452450 eth0  Out IP C11.42677 > 172.21.28.10.domain: 6097+ [1au] TXT? c12.group6.local. (57)
+18:36:47.452645 eth0  In  IP 172.21.28.10.domain > C11.42677: 6097* 2/0/1 TXT "Branch Office 1 client C12", TXT "Owner: Alexis and Karan; course: CMSC481" (165)
+18:36:47.536214 eth0  Out IP C11.33741 > 172.21.28.10.domain: 5305+ [1au] A? c12.group6.local. (57)
+18:36:47.536392 eth0  In  IP 172.21.28.10.domain > C11.33741: 5305* 1/0/1 A 172.21.18.12 (89)
+18:36:47.611902 eth0  Out IP C11.36430 > 172.21.28.10.domain: 26697+ [1au] A? www.google.com. (55)
+18:36:47.624297 eth0  In  IP 172.21.28.10.domain > C11.36430: 26697 8/0/1 A 142.251.157.119, A 142.251.153.119, A 142.251.150.119, A 142.251.154.119, A 142.251.152.119, A 142.251.151.119, A 142.251.155.119, A 142.251.156.119 (199)
+18:36:47.705066 eth0  Out IP C11.40091 > 172.21.28.10.domain: Flags [S], seq 2620876643, win 64660, options [mss 1220,sackOK,TS val 1012147534 ecr 0,nop,wscale 7], length 0
+18:36:47.705125 eth0  In  IP 172.21.28.10.domain > C11.40091: Flags [S.], seq 3427985173, ack 2620876644, win 65232, options [mss 1220,sackOK,TS val 3385683958 ecr 1012147534,nop,wscale 7], length 0
+18:36:47.705143 eth0  Out IP C11.40091 > 172.21.28.10.domain: Flags [.], ack 1, win 506, options [nop,nop,TS val 1012147534 ecr 3385683958], length 0
+18:36:47.705198 eth0  Out IP C11.40091 > 172.21.28.10.domain: Flags [P.], seq 1:60, ack 1, win 506, options [nop,nop,TS val 1012147534 ecr 3385683958], length 59 50519+ [1au] ANY? c21.group6.local. (57)
+18:36:47.705211 eth0  In  IP 172.21.28.10.domain > C11.40091: Flags [.], ack 60, win 510, options [nop,nop,TS val 3385683958 ecr 1012147534], length 0
+18:36:47.705402 eth0  In  IP 172.21.28.10.domain > C11.40091: Flags [P.], seq 1:92, ack 60, win 510, options [nop,nop,TS val 3385683958 ecr 1012147534], length 91 50519* 1/0/1 A 172.21.19.21 (89)
+18:36:47.705408 eth0  Out IP C11.40091 > 172.21.28.10.domain: Flags [.], ack 92, win 506, options [nop,nop,TS val 1012147534 ecr 3385683958], length 0
+18:36:47.707349 eth0  Out IP C11.40091 > 172.21.28.10.domain: Flags [F.], seq 60, ack 92, win 506, options [nop,nop,TS val 1012147536 ecr 3385683958], length 0
+18:36:47.707414 eth0  In  IP 172.21.28.10.domain > C11.40091: Flags [F.], seq 92, ack 61, win 510, options [nop,nop,TS val 3385683960 ecr 1012147536], length 0
+18:36:47.707420 eth0  Out IP C11.40091 > 172.21.28.10.domain: Flags [.], ack 93, win 506, options [nop,nop,TS val 1012147536 ecr 3385683960], length 0
+18:36:47.775661 eth0  Out IP C11.53387 > 172.21.28.10.domain: 43504+ A? c21.group6.local. (34)
+18:36:47.775713 eth0  Out IP C11.53387 > 172.21.28.10.domain: 14580+ AAAA? c21.group6.local. (34)
+18:36:47.776103 eth0  In  IP 172.21.28.10.domain > C11.53387: 43504* 1/0/0 A 172.21.19.21 (50)
+18:36:47.776522 eth0  In  IP 172.21.28.10.domain > C11.53387: 14580* 0/1/0 (80)
+18:36:47.777250 eth0  Out IP C11.34300 > 172.21.28.10.domain: 52086+ PTR? 21.19.21.172.in-addr.arpa. (43)
+18:36:47.777411 eth0  In  IP 172.21.28.10.domain > C11.34300: 52086 NXDomain* 0/1/0 (97)
+18:36:48.862325 eth0  Out IP C11.57043 > 172.21.28.10.domain: 49162+ A? www.yahoo.com. (31)
+18:36:48.863293 eth0  Out IP C11.57043 > 172.21.28.10.domain: 42255+ AAAA? www.yahoo.com. (31)
+18:36:48.897323 eth0  In  IP 172.21.28.10.domain > C11.57043: 49162 3/0/0 CNAME me-ycpi-cf-www.g06.yahoodns.net., A 69.147.92.11, A 69.147.92.12 (108)
+18:36:48.897746 eth0  In  IP 172.21.28.10.domain > C11.57043: 42255 3/0/0 CNAME me-ycpi-cf-www.g06.yahoodns.net., AAAA 2001:4998:14:800::1000, AAAA 2001:4998:14:800::1001 (132)
+18:36:48.902582 eth0  Out IP C11.52743 > 172.21.28.10.domain: 46269+ PTR? 11.92.147.69.in-addr.arpa. (43)
+18:36:48.902774 eth0  In  IP 172.21.28.10.domain > C11.52743: 46269 1/0/0 PTR e1.ycpi.vip.dca.yahoo.com. (82)
+18:36:49.965186 eth0  Out IP C11.45766 > 172.21.28.10.domain: 20755+ [1au] A? nonexistent.group6.local. (65)
+18:36:49.965375 eth0  In  IP 172.21.28.10.domain > C11.45766: 20755 NXDomain* 0/1/1 (127)
+ld00017root@130.85.220.124:yml$ 
