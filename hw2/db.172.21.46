@@ -1,6 +1,0 @@
-$TTL 300
-@ IN SOA dns.ram.local. admin.ram.local. (2026080101 3600 900 604800 300)
-  IN NS dns.ram.local.
-11 IN PTR c11.ram.local.
-12 IN PTR c12.ram.local.
-254 IN PTR br1.ram.local.
