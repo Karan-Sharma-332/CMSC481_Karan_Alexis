@@ -1,0 +1,37 @@
+$TTL 300
+
+@ IN SOA dns.group_6.local. admin.group_6.local. (
+    2026092601
+    3600
+    900
+    604800
+    300
+)
+
+  IN NS dns.group_6.local.
+  IN MX 10 mail.group_6.local.
+  IN TXT "CMSC481 HW02 authoritative DNS zone"
+
+dns  IN A 172.21.28.10
+mail IN A 172.21.28.10
+
+c11  IN A 172.21.18.11
+c12  IN A 172.21.18.12
+
+c12  IN TXT "Branch Office 1 client C12"
+c12  IN TXT "Owner: Alexis and Karan; course: CMSC481"
+
+br1  IN A 172.21.18.254
+br1  IN A 172.21.26.254
+
+bb   IN A 172.21.26.253
+bb   IN A 172.21.27.253
+bb   IN A 172.21.28.253
+
+br2  IN A 172.21.27.254
+br2  IN A 172.21.19.254
+
+c21  IN A 172.21.19.21
+c22  IN A 172.21.19.22
+
+www  IN CNAME c21
