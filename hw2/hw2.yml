@@ -25,9 +25,9 @@ services:
     #add route to the backbone network i think?
     command: >
       bash -c "
-      ip route add 172.21.19.0/24 via 172.21.26.253
-      ip route add 172.21.28.0/24 via 172.21.26.253
-      && tail -f /dev/null
+      ip route add 172.21.19.0/24 via 172.21.26.253 &&
+      ip route add 172.21.28.0/24 via 172.21.26.253 &&
+      tail -f /dev/null
       "
   BR2:
     build:
@@ -50,9 +50,9 @@ services:
         ipv4_address: 172.21.27.254
     command: >
       bash -c "
-      ip route add 172.21.18.0/24 via 172.21.27.253
-      ip route add 172.21.28.0/24 via 172.21.27.253 
-      && tail -f /dev/null
+      ip route add 172.21.18.0/24 via 172.21.27.253 && 
+      ip route add 172.21.28.0/24 via 172.21.27.253 &&
+      tail -f /dev/null
       "
 
   BB:
