@@ -1,6 +1,6 @@
 $TTL 300
 
-@ IN SOA dns.group_6.local. admin.group_6.local. (
+@ IN SOA dns.group6.local. admin.group6.local. (
     2026092601
     3600
     900
@@ -8,8 +8,8 @@ $TTL 300
     300
 )
 
-  IN NS dns.group_6.local.
-  IN MX 10 mail.group_6.local.
+  IN NS dns.group6.local.
+  IN MX 10 mail.group6.local.
   IN TXT "CMSC481 HW02 authoritative DNS zone"
 
 dns  IN A 172.21.28.10
