@@ -1,0 +1,218 @@
+ld00017root@130.85.220.124:yml$ sudo docker exec -it C11 dig c11.group6.local A 
+sudo docker exec -it C11 dig group6.local NS
+sudo docker exec -it C11 dig group6.local MX 
+sudo docker exec -it C11 dig c12.group6.local TXT 
+sudo docker exec -it C11 dig c12.group6.local A 
+sudo docker exec -it C11 dig www.google.com
+sudo docker exec -it C11 dig c21.group6.local ANY
+sudo docker exec -it C11 ping -c2 c21.group6.local 
+sudo docker exec -it C11 ping -c2 www.yahoo.com 
+sudo docker exec -it C11 dig nonexistent.group6.local 
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.7-Ubuntu <<>> c11.group6.local A
+;; global options: +cmd
+;; Got answer:
+;; WARNING: .local is reserved for Multicast DNS
+;; You are currently testing what happens when an mDNS query is leaked to DNS
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 55170
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: f0f8ebab664af4a8010000006ab80db69e407bb92d6af9b8 (good)
+;; QUESTION SECTION:
+;c11.group6.local.		IN	A
+
+;; ANSWER SECTION:
+c11.group6.local.	300	IN	A	172.21.18.11
+
+;; Query time: 0 msec
+;; SERVER: 172.21.28.10#53(172.21.28.10) (UDP)
+;; WHEN: Sat Sep 26 18:23:50 UTC 2026
+;; MSG SIZE  rcvd: 89
+
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.7-Ubuntu <<>> group6.local NS
+;; global options: +cmd
+;; Got answer:
+;; WARNING: .local is reserved for Multicast DNS
+;; You are currently testing what happens when an mDNS query is leaked to DNS
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 9215
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 2
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 4ecbd434307f3938010000006ab80db64dd6f68be6c04fb3 (good)
+;; QUESTION SECTION:
+;group6.local.			IN	NS
+
+;; ANSWER SECTION:
+group6.local.		300	IN	NS	dns.group6.local.
+
+;; ADDITIONAL SECTION:
+dns.group6.local.	300	IN	A	172.21.28.10
+
+;; Query time: 0 msec
+;; SERVER: 172.21.28.10#53(172.21.28.10) (UDP)
+;; WHEN: Sat Sep 26 18:23:50 UTC 2026
+;; MSG SIZE  rcvd: 103
+
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.7-Ubuntu <<>> group6.local MX
+;; global options: +cmd
+;; Got answer:
+;; WARNING: .local is reserved for Multicast DNS
+;; You are currently testing what happens when an mDNS query is leaked to DNS
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 59764
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 42da5920f802b3db010000006ab80db6e4db7e08875a4fb5 (good)
+;; QUESTION SECTION:
+;group6.local.			IN	MX
+
+;; ANSWER SECTION:
+group6.local.		300	IN	MX	10 mail.group6.local.
+
+;; Query time: 0 msec
+;; SERVER: 172.21.28.10#53(172.21.28.10) (UDP)
+;; WHEN: Sat Sep 26 18:23:50 UTC 2026
+;; MSG SIZE  rcvd: 90
+
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.7-Ubuntu <<>> c12.group6.local TXT
+;; global options: +cmd
+;; Got answer:
+;; WARNING: .local is reserved for Multicast DNS
+;; You are currently testing what happens when an mDNS query is leaked to DNS
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 59191
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 8b33ed3b20144b1c010000006ab80db6a8cd14ba563a6966 (good)
+;; QUESTION SECTION:
+;c12.group6.local.		IN	TXT
+
+;; ANSWER SECTION:
+c12.group6.local.	300	IN	TXT	"Owner: Alexis and Karan; course: CMSC481"
+c12.group6.local.	300	IN	TXT	"Branch Office 1 client C12"
+
+;; Query time: 0 msec
+;; SERVER: 172.21.28.10#53(172.21.28.10) (UDP)
+;; WHEN: Sat Sep 26 18:23:50 UTC 2026
+;; MSG SIZE  rcvd: 165
+
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.7-Ubuntu <<>> c12.group6.local A
+;; global options: +cmd
+;; Got answer:
+;; WARNING: .local is reserved for Multicast DNS
+;; You are currently testing what happens when an mDNS query is leaked to DNS
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 12828
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: b291db36011d88fa010000006ab80db63bccf3904307bad4 (good)
+;; QUESTION SECTION:
+;c12.group6.local.		IN	A
+
+;; ANSWER SECTION:
+c12.group6.local.	300	IN	A	172.21.18.12
+
+;; Query time: 0 msec
+;; SERVER: 172.21.28.10#53(172.21.28.10) (UDP)
+;; WHEN: Sat Sep 26 18:23:50 UTC 2026
+;; MSG SIZE  rcvd: 89
+
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.7-Ubuntu <<>> www.google.com
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 47104
+;; flags: qr rd ra; QUERY: 1, ANSWER: 8, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 260b2b7f5e788dd1010000006ab80db6b84ee41cec659361 (good)
+;; QUESTION SECTION:
+;www.google.com.			IN	A
+
+;; ANSWER SECTION:
+www.google.com.		300	IN	A	142.251.157.119
+www.google.com.		300	IN	A	142.251.155.119
+www.google.com.		300	IN	A	142.251.151.119
+www.google.com.		300	IN	A	142.251.154.119
+www.google.com.		300	IN	A	142.251.150.119
+www.google.com.		300	IN	A	142.251.152.119
+www.google.com.		300	IN	A	142.251.153.119
+www.google.com.		300	IN	A	142.251.156.119
+
+;; Query time: 43 msec
+;; SERVER: 172.21.28.10#53(172.21.28.10) (UDP)
+;; WHEN: Sat Sep 26 18:23:50 UTC 2026
+;; MSG SIZE  rcvd: 199
+
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.7-Ubuntu <<>> c21.group6.local ANY
+;; global options: +cmd
+;; Got answer:
+;; WARNING: .local is reserved for Multicast DNS
+;; You are currently testing what happens when an mDNS query is leaked to DNS
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 17967
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 74bcf9f9e54c6a67010000006ab80db77d6133ce29189352 (good)
+;; QUESTION SECTION:
+;c21.group6.local.		IN	ANY
+
+;; ANSWER SECTION:
+c21.group6.local.	300	IN	A	172.21.19.21
+
+;; Query time: 0 msec
+;; SERVER: 172.21.28.10#53(172.21.28.10) (TCP)
+;; WHEN: Sat Sep 26 18:23:51 UTC 2026
+;; MSG SIZE  rcvd: 89
+
+PING c21.group6.local (172.21.19.21) 56(84) bytes of data.
+64 bytes from 172.21.19.21: icmp_seq=1 ttl=61 time=0.130 ms
+64 bytes from 172.21.19.21: icmp_seq=2 ttl=61 time=0.166 ms
+
+--- c21.group6.local ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1028ms
+rtt min/avg/max/mdev = 0.130/0.148/0.166/0.018 ms
+PING me-ycpi-cf-www.g06.yahoodns.net (69.147.92.11) 56(84) bytes of data.
+64 bytes from 69.147.92.11: icmp_seq=1 ttl=51 time=3.94 ms
+64 bytes from 69.147.92.11: icmp_seq=2 ttl=51 time=4.12 ms
+
+--- me-ycpi-cf-www.g06.yahoodns.net ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+rtt min/avg/max/mdev = 3.941/4.031/4.121/0.090 ms
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.7-Ubuntu <<>> nonexistent.group6.local
+;; global options: +cmd
+;; Got answer:
+;; WARNING: .local is reserved for Multicast DNS
+;; You are currently testing what happens when an mDNS query is leaked to DNS
+;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 7365
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 0e586e53624433f8010000006ab80db9b3dd8ea79654519e (good)
+;; QUESTION SECTION:
+;nonexistent.group6.local.	IN	A
+
+;; AUTHORITY SECTION:
+group6.local.		300	IN	SOA	dns.group6.local. admin.group6.local. 2026092601 3600 900 604800 300
+
+;; Query time: 0 msec
+;; SERVER: 172.21.28.10#53(172.21.28.10) (UDP)
+;; WHEN: Sat Sep 26 18:23:53 UTC 2026
+;; MSG SIZE  rcvd: 127
+
+ld00017root@130.85.220.124:yml$ 
