@@ -1,0 +1,62 @@
+docker exec -i DNS_SERVER sh -c 'cat > /etc/bind/db.group6.local' <<'EOF'
+$TTL 300
+@ IN SOA dns.group6.local. admin.group6.local. (
+    2026101501
+    3600
+    900
+    604800
+    300
+)
+
+@       IN NS dns.group6.local.
+@       IN MX 10 mail.group6.local.
+
+; DNS and mail
+dns     IN A 172.21.17.218
+mail    IN A 172.21.17.11
+
+; Branch Office 1
+c11     IN A 172.21.17.70
+c12     IN A 172.21.17.71
+br1     IN A 172.21.17.65
+
+; Branch Office 2
+c21     IN A 172.21.17.100
+c22     IN A 172.21.17.101
+br2     IN A 172.21.17.97
+
+; Backbone links
+br1-bb  IN A 172.21.17.193
+bb-br1  IN A 172.21.17.194
+br2-bb  IN A 172.21.17.201
+bb-br2  IN A 172.21.17.202
+cg-bb   IN A 172.21.17.209
+bb-cg   IN A 172.21.17.210
+bb-dns  IN A 172.21.17.217
+bb      IN A 172.21.17.217
+
+; Corporate Network
+cg      IN A 172.21.17.126
+as1     IN A 172.21.17.10
+as2     IN A 172.21.17.11
+
+; NAT and Web Servers
+ws      IN A 172.21.17.20
+ws1     IN A 172.21.17.21
+ws2     IN A 172.21.17.22
+dnat    IN A 172.21.17.20
+
+; Private Web Server Addresses
+ws1-private IN A 192.168.17.11
+ws2-private IN A 192.168.17.12
+
+; Internet-facing router interface
+cg-internet IN A 172.22.17.254
+
+; CNAME Record
+www IN CNAME ws1.group6.local.
+
+; TXT Records
+c12 IN TXT "CMSC 481 HW3"
+c12 IN TXT "Branch Office One"
+EOF
