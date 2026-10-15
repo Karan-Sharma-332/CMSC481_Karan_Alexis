@@ -1,0 +1,41 @@
+docker exec -i DNS_SERVER sh -c 'cat > /etc/bind/db.172.21.17' <<'EOF'
+$TTL 300
+@ IN SOA dns.group6.local. admin.group6.local. (
+    2026101501 3600 900 604800 300
+)
+@ IN NS dns.group6.local.
+
+10  IN PTR as1.group6.local.
+11  IN PTR as2.group6.local.
+20  IN PTR ws.group6.local.
+21  IN PTR ws1.group6.local.
+22  IN PTR ws2.group6.local.
+65  IN PTR br1.group6.local.
+70  IN PTR c11.group6.local.
+71  IN PTR c12.group6.local.
+97  IN PTR br2.group6.local.
+100 IN PTR c21.group6.local.
+101 IN PTR c22.group6.local.
+126 IN PTR cg.group6.local.
+193 IN PTR br1-bb.group6.local.
+194 IN PTR bb-br1.group6.local.
+201 IN PTR br2-bb.group6.local.
+202 IN PTR bb-br2.group6.local.
+209 IN PTR cg-bb.group6.local.
+210 IN PTR bb-cg.group6.local.
+217 IN PTR bb-dns.group6.local.
+218 IN PTR dns.group6.local.
+EOF
+root@130.85.220.124:yml# 
+root@130.85.220.124:yml# 
+root@130.85.220.124:yml# docker exec -i DNS_SERVER sh -c 'cat > /etc/bind/db.192.168.17' <<'EOF'
+$TTL 300
+@ IN SOA dns.group6.local. admin.group6.local. (
+    2026101501 3600 900 604800 300
+)
+@ IN NS dns.group6.local.
+
+11  IN PTR ws1-private.group6.local.
+12  IN PTR ws2-private.group6.local.
+254 IN PTR dnat.group6.local.
+EOF
